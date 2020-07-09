@@ -1,0 +1,77 @@
+<%- include("./components/header") %>
+
+<form action="/login" method="post" class="login mx-auto">
+
+    <h2 class="h1 text-capitalize text-center">Login</h2>
+
+    <div class="alert alert-warning alert-dismissible fade show d-none" role="alert">
+        <strong>username or password</strong> does not correct.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <div class="form-row">
+
+        <div class="col-md-4 mb-3 md-form mx-auto ">
+            <label for="username" class="text-capitalize">email or username</label>
+            <input type="email" class="form-control" id="username" name="username" required>
+            <div class="invalid-feedback">
+                 username is required
+            </div>
+        </div>
+
+        <div class="col-md-4 offset-2 mb-3 md-form mx-auto">
+            <label for="password" class="text-capitalize">password</label>
+            <input type="password" class="form-control " id="password" name="password" required>
+            <div class="invalid-feedback">
+                password is required
+            </div>
+        </div>
+
+    </div>
+    <button class="btn btn-login btn-primary btn-sm btn-rounded" type="submit">Submit form</button>
+</form>
+
+
+
+<%- include("./components/footer")%>
+
+<script>
+   const btn = document.querySelector(".btn-login");
+   const username = document.getElementById("username");
+   const password = document.getElementById("password");
+   let validPass = false, validUser = false
+   btn.disabled = !validPass || !validUser;
+
+   username.addEventListener("input", _=> {
+       validUser = check(username, /\w{3,}@\w{4,}[.]\w{2,}/gim)
+       btn.disabled = !validPass || !validUser;
+   })
+   password.addEventListener("input", _=> {
+       validPass = check(password, /\w/gim)
+       btn.disabled = !validPass || !validUser;
+   })
+
+   /**
+    * helper function to check data
+    * @param input {@link HTMLElement}
+    * @param pattern {@link RegExp}
+    * @returns {@link Boolean }
+    **/
+    function check(input, pattern) {
+        if (pattern.test(input.value.trim())){
+            $(input).addClass("is-valid").removeClass("is-invalid").next().css("display", "none");
+            return true
+        }else {
+            $(input).addClass("is-invalid").removeClass("is-valid").next().css("display", "block");
+            return false
+        }
+    }
+
+
+
+</script>
+
+</body>
+</html>
