@@ -12,11 +12,13 @@ const STORE = new SessionStore({
   uri : "mongodb://localhost:27017/first-project",
   collection : "sessions"
 })
+const guards = require("./guards/auth")
 
 // routes
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const loginRouter = require('./routes/login');
+const signUpRouter = require('./routes/signup');
 
 const app = express();
 
@@ -46,7 +48,8 @@ app.use(express.static(path.join(__dirname, 'assets')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/login', loginRouter);
+app.use('/login', guards.isUser, loginRouter);
+app.use('/signup', guards.isUser, signUpRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

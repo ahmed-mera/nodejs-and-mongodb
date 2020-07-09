@@ -18,11 +18,11 @@ exports.getLogin = (req, res, next) => {
  * @param req
  * @param res
  * @param next
- * @returns html page {@link HTMLDocument}
+ * if all okay 'll redirect at home else 'll send an error exception {@link Error}
  */
 exports.postLogin =  (req, res, next) => {
     modelLogin.getUser(req.body).then(data => {
-        req.session.id = data._id;
-        res.redirect("/", 200)
-    }).catch(err => new Error(err))
+        req.session.userId = data._id;
+        res.redirect("/")
+    }).catch(err => res.send(new Error(err)))
 }
