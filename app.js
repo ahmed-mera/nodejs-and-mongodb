@@ -50,6 +50,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/login', guards.isUser, loginRouter);
 app.use('/signup', guards.isUser, signUpRouter);
+app.use('/logout', guards.logout);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
