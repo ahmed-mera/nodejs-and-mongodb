@@ -2,6 +2,8 @@
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
+const constants = require("./constants/constantsDBLogin_SignUp")
+const constantsAPI = require("./constants/APIConstant")
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const sassMiddleware = require('node-sass-middleware');
@@ -9,23 +11,23 @@ const session = require('express-session');
 const SessionStore = require('connect-mongodb-session')(session);
 const STORE = new SessionStore({
   // uri : "mongodb+srv://ahmed:pass@nodejs.6u9jq.gcp.mongodb.net/node",
-  uri : "mongodb://localhost:27017/first-project",
+  uri : constants.URL,
   collection : "sessions"
 })
 const guards = require("./guards/auth")
 const flash = require('connect-flash') // to share data
-
 // routes
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const loginRouter = require('./routes/login');
 const signUpRouter = require('./routes/signup');
+const APIRouter = require('./routes/API');
 
 const app = express();
 
 
 app.use(session({
-  secret : "ae631cea49c278b087fb848da055bea3aad1445decdceae684d19157e57bddbaaf54aeacda97fbe0717fe2dc36728695c3f329f54e6272834d66b604616ad379",
+  secret : constantsAPI.SECRET,
   resave: false,
   saveUninitialized : false,
   store : STORE // nel database
@@ -53,6 +55,7 @@ app.use('/users', usersRouter);
 app.use('/login', guards.isUser, loginRouter);
 app.use('/signup', guards.isUser, signUpRouter);
 app.use('/logout', guards.logout);
+app.use('/API', APIRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
