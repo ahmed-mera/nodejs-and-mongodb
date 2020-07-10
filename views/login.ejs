@@ -3,14 +3,15 @@
 <form action="/login" method="post" class="login mx-auto">
 
     <h2 class="h1 text-capitalize text-center mb-5"><%= title %></h2>
-
-    <div class="alert alert-warning alert-dismissible fade show d-none" role="alert">
-        <strong>username or password</strong> does not correct.
+    <% if(error){ %>
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+<!--        <strong>username or password</strong> does not correct.-->
+        <strong><%= error %></strong>.
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
-
+    <% } %>
     <div class="form-row">
 
         <div class="col-md-4 mb-3 md-form mx-auto ">
@@ -45,7 +46,7 @@
    btn.disabled = !validPass || !validUser;
 
    username.addEventListener("input", _=> {
-       validUser = check(username, /\w{3,}@\w{4,}[.]\w{2,}/gim)
+       validUser = check(username, /\w{3,}@\w{4,}[.]\w{2,3}/gim)
        btn.disabled = !validPass || !validUser;
    })
    password.addEventListener("input", _=> {

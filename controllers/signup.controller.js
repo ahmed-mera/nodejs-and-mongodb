@@ -1,4 +1,4 @@
-const modelSignUp = require("../modules/signup.module")
+const modelSignUp = require("../modules/login_signup.module")
 
 /**
  * function to control the request
@@ -7,7 +7,9 @@ const modelSignUp = require("../modules/signup.module")
  * @param next
  * @returns html page {@link HTMLDocument}
  */
-exports.getSignUp= (req, res, next) => res.render('signup', { title: 'Sign up' })
+exports.getSignUp= (req, res, next) => {
+    res.render('signup', { title: 'Sign up', error : req.flash("error")[0] })
+}
 
 
 
@@ -24,7 +26,16 @@ exports.postLogin =  (req, res, next) => {
         console.log(req.session.id )
         res.redirect("/")
     }).catch(err => {
-        console.log("error " + err)
-        res.send(new Error("error " + err))
+        req.flash("error", err);
+        res.redirect("/signup")
+
+        // will be redirect to login
+        setTimeout(_ => {
+            // set value of error
+            req.flash("error", null);
+            // redirect to login
+            res.redirect("/login")
+        }, 5000)
+
     })
 }

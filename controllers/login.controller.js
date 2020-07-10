@@ -1,4 +1,4 @@
-const modelLogin = require("../modules/login.module")
+const model = require("../modules/login_signup.module")
 
 /**
  * function to control the request
@@ -8,8 +8,7 @@ const modelLogin = require("../modules/login.module")
  * @returns html page {@link HTMLDocument}
  */
 exports.getLogin = (req, res, next) => {
-    // modelLogin.getAllUsers().then(users => console.log(users)).catch(err => console.log(err))
-    res.render('login', { title: 'login' })
+    res.render('login', { title: 'login', error : req.flash('error')[0] })
 }
 
 
@@ -21,8 +20,11 @@ exports.getLogin = (req, res, next) => {
  * if all okay 'll redirect at home else 'll send an error exception {@link Error}
  */
 exports.postLogin =  (req, res, next) => {
-    modelLogin.getUser(req.body).then(data => {
+    model.getUser(req.body).then(data => {
         req.session.userId = data._id;
         res.redirect("/")
-    }).catch(err => res.send(new Error(err)))
+    }).catch(err => {
+        req.flash("error", err);
+        res.redirect("/login")
+    })
 }

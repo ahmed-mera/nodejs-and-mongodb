@@ -13,6 +13,7 @@ const STORE = new SessionStore({
   collection : "sessions"
 })
 const guards = require("./guards/auth")
+const flash = require('connect-flash') // to share data
 
 // routes
 const indexRouter = require('./routes/index');
@@ -45,6 +46,7 @@ app.use(sassMiddleware({
   sourceMap: true
 }));
 app.use(express.static(path.join(__dirname, 'assets')));
+app.use(flash()); // call it
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
