@@ -7,7 +7,7 @@ const modelSignUp = require("../models/login_signup.module")
  * @param next
  * @returns html page {@link HTMLDocument}
  */
-exports.getSignUp= (req, res, next) => {
+exports.getSignUp = (req, res, next) => {
     res.render('signup', { title: 'Sign up', error : req.flash("error")[0] })
 }
 

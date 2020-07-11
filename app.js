@@ -1,21 +1,18 @@
 //modules
 const createError = require('http-errors');
 const express = require('express');
-const path = require('path');
-const constants = require("./constants/constantsDBLogin_SignUp")
-const constantsAPI = require("./constants/APIConstant")
+const flash = require('connect-flash') // to share data
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const sassMiddleware = require('node-sass-middleware');
 const session = require('express-session');
+const path = require('path');
+const constants = require("./constants/constantsDBLogin_SignUp")
+const constantsAPI = require("./constants/APIConstant")
 const SessionStore = require('connect-mongodb-session')(session);
-const STORE = new SessionStore({
-  // uri : "mongodb+srv://ahmed:pass@nodejs.6u9jq.gcp.mongodb.net/node",
-  uri : constants.URL,
-  collection : "sessions"
-})
+const STORE = new SessionStore({ uri : constants.URL,  collection : "sessions" })
 const guards = require("./guards/auth")
-const flash = require('connect-flash') // to share data
+
 // routes
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
