@@ -1,4 +1,4 @@
-const modelSignUp = require("../modules/login_signup.module")
+const modelSignUp = require("../models/login_signup.module")
 
 /**
  * function to control the request
@@ -20,11 +20,9 @@ exports.getSignUp= (req, res, next) => {
  * @param next
  * if all okay 'll redirect at home else 'll send an error exception {@link Error}
  */
-exports.postLogin =  (req, res, next) => {
+exports.postSignUp =  (req, res, next) => {
     modelSignUp.addUser({username : req.body.username, password : req.body.password}).then(data => {
-        req.session.id = data._id;
-        console.log(req.session.id )
-        res.redirect("/")
+        res.redirect("/login")
     }).catch(err => {
         req.flash("error", err);
         res.redirect("/signup")

@@ -1,4 +1,4 @@
-const model = require("../modules/login_signup.module")
+const model = require("../models/login_signup.module")
 
 /**
  * function to control the request

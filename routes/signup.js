@@ -5,6 +5,6 @@ const controllerSignUp = require("../controllers/signup.controller")
 router.get('/', controllerSignUp.getSignUp)
 
 /* POST login page. */
-router.post('/',controllerSignUp.postLogin)
+router.post('/',controllerSignUp.postSignUp)
 
 module.exports = router;
