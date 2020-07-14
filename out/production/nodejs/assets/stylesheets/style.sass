@@ -1,0 +1,21 @@
+@mixin maxWidth($valueInPX )
+  max-width: $valueInPX
+
+
+body
+  padding: 50px
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif
+
+a
+  color: #00B7FF
+
+
+.login
+  @include maxWidth(850px)
+  label
+    margin-left: 5px
+    .btn-login:disabled
+      cursor: none
+
+
+

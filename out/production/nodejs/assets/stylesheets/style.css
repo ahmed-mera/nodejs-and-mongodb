@@ -1,0 +1,15 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+
+a {
+  color: #00B7FF; }
+
+.login {
+  max-width: 850px; }
+  .login label {
+    margin-left: 5px; }
+    .login label .btn-login:disabled {
+      cursor: none; }
+
+/*# sourceMappingURL=style.css.map */
