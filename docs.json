@@ -1,0 +1,71 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Documentation API",
+    "description": "Documentation API",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:50000"
+    }
+  ],
+  "paths": {
+    "/API/" : {
+      "get": {
+        "summary": "to get all users from databases",
+        "responses": {
+
+        }
+      },
+      "post": {
+        "summary": "to get all users from databases",
+        "responses": {
+
+        }
+      }
+    },
+    "/API/user" : {
+      "get": {
+        "parameters": [
+          {
+            "name": "username",
+            "required": true,
+            "example": "ahmed@gmail.com",
+            "in": "string"
+          },
+          {
+            "name": "password",
+            "required": true,
+            "example": "123456",
+            "in": "string"
+          }
+        ],
+        "summary": "to get user from databases",
+        "responses": {
+
+        }
+      },
+      "post": {
+        "parameters": [
+          {
+            "name": "username",
+            "required": true,
+            "example": "ahmed@gmail.com",
+            "in": "string"
+          },
+          {
+            "name": "password",
+            "required": true,
+            "example": "123456",
+            "in": "string"
+          }
+        ],
+        "summary": "to get user from databases",
+        "responses": {
+
+        }
+      }
+    }
+  }
+}
