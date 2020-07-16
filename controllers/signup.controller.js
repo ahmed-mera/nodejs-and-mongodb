@@ -27,13 +27,13 @@ exports.postSignUp =  (req, res, next) => {
         req.flash("error", err);
         res.redirect("/signup")
 
-        // will be redirect to login
-        setTimeout(_ => {
-            // set value of error
-            req.flash("error", null);
-            // redirect to login
-            res.redirect("/login")
-        }, 5000)
+        // // will be redirect to login
+        // setTimeout(_ => {
+        //     // set value of error
+        //     req.flash("error", null);
+        //     // redirect to login
+        //     res.redirect("/login")
+        // }, 5000)
 
     })
 }
